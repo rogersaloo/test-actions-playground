@@ -2,7 +2,6 @@ name: 'Deploy node app'
 run-name: 'node app'
 
 on:
-  workflow_dispatch:
   push:
     - main
   pull_request:
