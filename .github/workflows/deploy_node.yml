@@ -1,0 +1,24 @@
+name: 'Deploy node app'
+run-name: 'node app'
+
+on:
+  workflow_dispatch:
+  push:
+    - main
+  pull_request:
+    - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code from repo
+        uses: actions/checkout@v3
+      - name: Install Node JS
+        uses: actions/setup-node@v3
+        with:
+          node-verion: 18
+      - name: Install dependencies
+        run: npm ci
+      - name: Run tests
+        run: npm test
