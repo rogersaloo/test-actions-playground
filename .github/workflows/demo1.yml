@@ -3,6 +3,14 @@ on:
   pull_request:
     types:
       - opened
+    branches:
+      - main
+      - dev
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'README.md'
   workflow_dispatch:
 jobs:
   deploy:
