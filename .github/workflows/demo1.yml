@@ -1,4 +1,4 @@
-name: Events Demo 1
+name: Skip CI demo
 on:
   pull_request:
     types:
@@ -23,8 +23,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Test code
-        run: npm run test
+        run: echp "Testing..."
       - name: Build code
-        run: npm run build
+        run: echo "Building..."
       - name: Deploy project
         run: echo "Deploying..."
