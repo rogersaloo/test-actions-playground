@@ -13,9 +13,7 @@ jobs:
       - name: Get code
         uses: actions/checkout@v3
       - name: move to project
-        run: |
-          cd 3_test
-          ls -a
+        run: cd 3_test
       - name: Install dependencies
         run: npm ci
       - name: Lint code
