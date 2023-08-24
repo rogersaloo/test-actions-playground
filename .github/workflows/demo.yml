@@ -5,6 +5,7 @@ on:
       - main
       - dev
       - test
+      - new
 jobs:
   test:
     runs-on: ubuntu-latest
