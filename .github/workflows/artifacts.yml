@@ -23,8 +23,8 @@ jobs:
         with:
           name: dist-files
           path: |
-            dist
-            package.json
+            3_test/dist
+            3_test/package.json
 
       
   build:
