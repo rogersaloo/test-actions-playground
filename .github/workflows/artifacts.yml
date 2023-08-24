@@ -22,7 +22,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: dist-files
-          path: dist
+          path: 3_test/dist
           # path: |
           #   3_test/dist
           #   3_test/package.json
