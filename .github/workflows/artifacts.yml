@@ -38,6 +38,7 @@ jobs:
       - run: |
           cd 3_test
           ls -a
+          npm ci
           npm run build
       - name: upload artifacts
         uses: actions/upload-artifact@v3
