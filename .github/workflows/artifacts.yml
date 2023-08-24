@@ -18,6 +18,14 @@ jobs:
           npm ci
           npm run test
           npm run build
+      - name: upload artifacr
+        uses: actions/upload/artifacts
+        with:
+          name: dist-files
+          path: |
+            dist
+            package.json
+
       
   build:
     needs: test
