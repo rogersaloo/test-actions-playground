@@ -13,6 +13,11 @@ jobs:
     steps:
       - name: Run test 
         uses: actions/checkout@v3
+      - name: cache dependancies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - run: |
           cd 3_test
           ls -a
@@ -25,10 +30,14 @@ jobs:
     steps:
       - name: Build code gen artifacts
         uses: actions/checkout@v3
+      - name: cache dependancies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - run: |
           cd 3_test
           ls -a
-          npm ci
           npm run build
       - name: upload artifacts
         uses: actions/upload-artifact@v3
