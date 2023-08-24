@@ -22,24 +22,19 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: dist-files
-          path: |
-            3_test/dist
-            3_test/package.json
+          path: dist
+          # path: |
+          #   3_test/dist
+          #   3_test/package.json
 
-      
-  build:
+    
+  deploy:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - name: Get code
-        uses: actions/checkout@v3
-      - run: |
-          cd 3_test
-          echo "testing"
-  
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
+      - name: Get build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: dist-files
       - name: Deploy
         run: echo "Deploying..."
