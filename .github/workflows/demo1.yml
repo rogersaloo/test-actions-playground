@@ -9,10 +9,12 @@ on:
 env:
   MONGODB_DB_NAME: gha-demo
 
+
+  
 jobs:
   test:
     env:
-      MONGODN_CLUSTER_ADDRESS: gitaction.gkgedad.mongodb.net
+      MONGODB_CLUSTER_ADDRESS: gitaction.gkgedad.mongodb.net
       MONGODB_USERNAME: testactions
       MONGODB_PASSWORD: gitactions123
       PORT: 8080
