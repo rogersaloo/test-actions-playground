@@ -9,14 +9,12 @@ on:
 env:
   MONGODB_DB_NAME: gha-demo
 
-
-
 jobs:
   test:
     env:
       MONGODB_CLUSTER_ADDRESS: gitaction.gkgedad.mongodb.net
-      MONGODB_USERNAME: testactions
-      MONGODB_PASSWORD: gitactions123
+      MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
+      MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
       PORT: 8080
     runs-on: ubuntu-latest
     steps:
@@ -35,7 +33,7 @@ jobs:
       - name: test
         run: npm test
       - name: Output information
-        run: echo "MOGODB_USERNAME ${{ env.MONGODB_USERNAME }}"
+        run: echo "MOGODB_USERNAME "
         
 
   deploy:
