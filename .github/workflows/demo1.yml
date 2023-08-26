@@ -11,6 +11,7 @@ env:
 
 jobs:
   test:
+    environment: testing
     env:
       MONGODB_CLUSTER_ADDRESS: gitaction.gkgedad.mongodb.net
       MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
@@ -33,7 +34,7 @@ jobs:
       - name: test
         run: npm test
       - name: Output information
-        run: echo "MOGODB_USERNAME "
+        run: echo "MOGODB_USERNAME ${{ env.MONGODB_USERNAME }}"
         
 
   deploy:
