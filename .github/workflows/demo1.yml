@@ -22,13 +22,14 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v3
+      - name: install the dependancies
+        run: npm ci
       - name: cache the dependencies
         uses: actions/cache@v3
         with:
           path: ~/.npm
           key: npm-deps-${{ hashFiles('**/package-lock.json') }}
-      - name: install the dependancies
-        run: npm ci
+  
       - name: run sever
         run: npm start & px wait on http://127.0.0.1:$PORT
       - name: test
