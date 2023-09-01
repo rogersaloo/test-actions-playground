@@ -25,3 +25,8 @@ To make it reusable it must be callable by other workflows.
 - To call it using;
  ```uses: ./.github/workflows/reusable.yml
  ```
+- Caller cannot use the runners from the called repo.
+- Workflows can be reused when;
+ - Both are in the same repository.
+ - Is available in a public repository.
+ - Is available in a private repo and the permissions set allow for the access. [permissions here](https://docs.github.com/en/actions/creating-actions/sharing-actions-and-workflows-with-your-organization) and [here](https://docs.github.com/en/actions/creating-actions/sharing-actions-and-workflows-from-your-private-repository)
