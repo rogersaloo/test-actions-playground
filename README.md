@@ -15,3 +15,13 @@ Are used in the addition of extra conditions to span a different range. For inst
             - node-version: 12
             - operating-system: windows-latest
     ```
+
+
+## Reusable workflows
+Can be reused later on in the provision of different items
+To make it reusable it must be callable by other workflows.
+`workflow_call` used to set a workflow as callable. 
+- similar to the gitlab use of templates
+- To call it using;
+ ```uses: ./.github/workflows/reusable.yml
+ ```
