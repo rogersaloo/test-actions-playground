@@ -13,3 +13,10 @@ The containers can be obtained from the github registry using.
     MONGODB_CONNECTION_PROTOCOL: mongodb+srv
     MONGODB_CLUSTER_ADDRESS: gitaction.gkgedad.mongodb.net
     ```
+- Can also add mogo db to the local runner instead of using a container by changing the protocal,cluster and the port to be the same as the local.
+    ```
+    MONGODB_CONNECTION_PROTOCOL: mongodb
+    MONGODB_CLUSTER_ADDRESS: 127.0.0.1:27017
+    ```
+    Aditionally add the labels to the sevices by mapping the default port into a port. 
+    `- port: 27017:27017`
