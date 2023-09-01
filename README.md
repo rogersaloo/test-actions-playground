@@ -23,10 +23,28 @@ To make it reusable it must be callable by other workflows.
 `workflow_call` used to set a workflow as callable. 
 - similar to the gitlab use of templates
 - To call it using;
- ```uses: ./.github/workflows/reusable.yml
- ```
+    ```
+    uses: ./.github/workflows/reusable.yml
+    ```
 - Caller cannot use the runners from the called repo.
 - Workflows can be reused when;
- - Both are in the same repository.
- - Is available in a public repository.
- - Is available in a private repo and the permissions set allow for the access. [permissions here](https://docs.github.com/en/actions/creating-actions/sharing-actions-and-workflows-with-your-organization) and [here](https://docs.github.com/en/actions/creating-actions/sharing-actions-and-workflows-from-your-private-repository)
+    - Both are in the same repository.
+    - Is available in a public repository.
+    - Is available in a private repo and the permissions set allow for the access. [permissions here](https://docs.github.com/en/actions/creating-actions/sharing-actions-and-workflows-with-your-organization) and [here](https://docs.github.com/en/actions/creating-actions/sharing-actions-and-workflows-from-your-private-repository)
+
+**Examples**
+    1. Set the reusable workflow
+    `reusable.yml`
+    ```
+    ...
+    on: workflow_call:
+    jobs:
+    ...
+    ```
+    2. Call the reusable workflow
+    `reuse.yml`
+    ```
+    jobs:
+    uses: ./.github/workflows/reusable.yml
+    ``` 
+### Adding inputs to reusable workflow

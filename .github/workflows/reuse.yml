@@ -1,34 +1,83 @@
-name: 'Matrix Demo'
+name: Reuse workflow demo
 on:
-  push
+  push:
+    branches:
+      - main
 jobs:
-  build:
-    strategy:
-      matrix:
-        node-version: [12, 14]
-        operating-system: [ubuntu-latest, windows-latest]
-        include:
-          - node-version: 18
-            operating-system: ubuntu-latest
-        exclude:
-          - node-version: 12
-            operating-system: windows-latest
-          - node-version: 12
-            operating-system: ubuntu-latest
-          - node-version: 14
-            operating-system: windows-latest
-    runs-on: ${{ matrix.operating-system }}
+  lint:
+    runs-on: ubuntu-latest
     steps:
       - name: Get code
         uses: actions/checkout@v3
-      - name: Install NodeJs
-        uses: actions/setup-node@v3
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v3
         with:
-          node-version: ${{ matrix.node-version}}
-      - name: Install Dependencies
+          path: node_modules
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
-      - name: Build project
+      - name: Lint code
+        run: npm run lint
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci
+      - name: Test code
+        run: npm run test
+        id: run-test
+      - name: Upload test report
+        if: failure() && steps.run-test.outcome == 'failure'
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-report
+          path: test.json
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci
+      - name: Build website
+        id: build-website
         run: npm run build
-
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-files
+          path: dist
   deploy:
-    uses: ./.github/workflows/reusable.yml
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: reuse artifacts
+        uses: ./.github/workflows/reusable.yml
+      - name: Get build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: dist-files
+      - name: Output contents
+        run: ls
+      - name: Deploy
+        run: echo "Deploying..."
+  
