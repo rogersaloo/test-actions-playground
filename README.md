@@ -48,3 +48,8 @@ To make it reusable it must be callable by other workflows.
     uses: ./.github/workflows/reusable.yml
     ``` 
 ### Adding inputs to reusable workflow
+1. Can add artifcts to the workflows in order to provide good reusable workflows.
+2. 
+Can also add secrests on the reusable workflowif it sis required or  not. 
+- Use `with` for secrets only.
+3. Workflows can also contain outputs 

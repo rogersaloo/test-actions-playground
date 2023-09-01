@@ -66,11 +66,17 @@ jobs:
         with:
           name: dist-files
           path: dist
+
   deploy:
     needs: build
+    # get the reusable workflow from called and passes artifacts
     uses: ./.github/workflows/reusable.yml
     with:
       artifact-name: dist-files
-
-
   
+  print-deploy-result:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print deploy output
+        run: echo "${{ needs.deploy.outputs }}"
