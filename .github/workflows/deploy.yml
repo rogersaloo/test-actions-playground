@@ -20,8 +20,8 @@ jobs:
         uses: actions/checkout@v3
       - name: List the file
         run: |
-          ls -a
           ls ./.github/actions/cached-deps
+          cat ./.github/actions/cached-deps/action.yml
       - name: Load and cache dependancies
         uses: ./.github/actions/cached-deps/action
       - name: Test code
