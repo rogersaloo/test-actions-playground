@@ -10,7 +10,7 @@ jobs:
       - name: Get code
         uses: actions/checkout@v3
       - name: Load and cache dependancies
-        uses: ./.github/actions/cached-deps/action
+        uses: ./.github/actions/action.yml
       - name: Lint code
         run: npm run lint
   test:
@@ -18,12 +18,8 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v3
-      - name: List the file
-        run: |
-          ls ./.github/actions/cached-deps
-          cat ./.github/actions/cached-deps/action.yml
       - name: Load and cache dependancies
-        uses: ./.github/actions/cached-deps/action
+        uses: ./.github/actions/action.yml
       - name: Test code
         id: run-tests
         run: npm run test
@@ -40,7 +36,7 @@ jobs:
       - name: Get code
         uses: actions/checkout@v3
       - name: Load and cache dependancies
-        uses: ./.github/actions/cached-deps/action
+        uses: ./.github/actions/action.yml
       - name: Build website
         run: npm run build
       - name: Upload artifacts
