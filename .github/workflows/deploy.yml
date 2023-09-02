@@ -18,6 +18,8 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v3
+      - name: List the file
+        run: ls -a
       - name: Load and cache dependancies
         uses: ./.github/actions/cached-deps/action
       - name: Test code
