@@ -19,7 +19,9 @@ jobs:
       - name: Get code
         uses: actions/checkout@v3
       - name: List the file
-        run: ls -a
+        run: |
+          ls -a
+          ls ./.github/actions/cached-deps
       - name: Load and cache dependancies
         uses: ./.github/actions/cached-deps/action
       - name: Test code
