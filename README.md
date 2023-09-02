@@ -16,7 +16,9 @@ Custom actions are neeeded so as to simplify the workflow.
 - Then perform any task needed thereafter.
 
 3. Composite actions
-- Dotn write code with progtramming language.
+- Dont write code with progtramming language.
 - Combine multiple run and workflow then reuse them in the workflws.
 - Allows sharing, reusability and no sharing of skills.
-
+- Can create the actions in the same repository or in a different repo. 
+- Do not specify a trigger instead they are included in the caller repo
+- Actions created with github repos are called using their github path.
