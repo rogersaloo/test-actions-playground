@@ -22,3 +22,4 @@ Custom actions are neeeded so as to simplify the workflow.
 - Can create the actions in the same repository or in a different repo. 
 - Do not specify a trigger instead they are included in the caller repo
 - Actions created with github repos are called using their github path.
+- can be able to accepth inputs for the action that can be used in the custom actions.
