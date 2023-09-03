@@ -11,6 +11,9 @@ inputs:
   dist-folder:
     description: 'The folder contatining the dployable files'
     required: true
+outputs:
+  website-url:
+    description: 'Url of the website'
 
 runs:
   using: 'node16'
