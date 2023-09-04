@@ -1,4 +1,4 @@
-name: Deployment
+name: OIDC deployment
 on:
   push:
     branches:
