@@ -2,7 +2,7 @@ name: OIDC deployment
 on:
   push:
     branches:
-      - main
+      - module/oidc
 jobs:
   lint:
     runs-on: ubuntu-latest
