@@ -4,12 +4,27 @@ on:
     types:
       - opened
 jobs:
-  assign-label:
+  #Susceptible to script injection
+  # assign-label:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Assign label
+  #       run: |
+  #         issue_title="${{ github.event.issue.title }}"
+  #         if [[ "$issue_title" == *"bug"* ]]; then
+  #         echo "Issue is about a bug!"
+  #         else
+  #         echo "Issue is not about a bug"
+  #         fi
+  # solution to the script injection
+    assign-label:
     runs-on: ubuntu-latest
+    env:
+      TITLE: ${{ github.event.issue.title }}
     steps:
       - name: Assign label
         run: |
-          issue_title="${{ github.event.issue.title }}"
+          issue_title="$TITLE"
           if [[ "$issue_title" == *"bug"* ]]; then
           echo "Issue is about a bug!"
           else
