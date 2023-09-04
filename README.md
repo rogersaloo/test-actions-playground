@@ -20,6 +20,7 @@ Write the logic in a JS file with the node JS runtime to write a JS appplication
 - Docker not know JS but know another diffent programming lanugage.
 - Need to define a docker file to define the image.
 - Then perform any task needed thereafter.
+- To run the doceker function there is need for the Dockerfile, a python script and a requirements.txt which is used in the DockerFikle.
 
 3. Composite actions
 Combine multiple run and workflow then reuse them in the workflws.
